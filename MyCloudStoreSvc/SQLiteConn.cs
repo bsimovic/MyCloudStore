@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data.SQLite;
 using System.Data;
 
@@ -12,102 +8,179 @@ namespace MyCloudStoreSvc
 	{
 		private SQLiteConnection conn;
 
-		public SQLiteConn(string path)
+		private static SQLiteConn instance;
+		private static object locker = true;
+
+		public static SQLiteConn Instance
 		{
-			conn = new SQLiteConnection($"Data Source={path};Version=3;");
+			get
+			{
+				lock (locker)
+				{
+					if (instance == null)
+						instance = new SQLiteConn();
+				}
+				return instance;
+			}
 		}
 
-		public void InsertFile(StoredFile f)
+		private SQLiteConn()
+		{
+			conn = new SQLiteConnection("Data Source=C:\\mcsdb\\mcsdb.db;Version=3;");
+		}
+
+		public string GetToken(string username)
 		{
 			conn.Open();
 
 			SQLiteCommand cmd = conn.CreateCommand();
-			cmd.CommandText = $"INSERT INTO StoredFile(username, filename, size, hash, data) VALUES ({f.username}, {f.filename}, {f.size}, {f.hash}, @file);";
-			cmd.Parameters.Add("@file", DbType.Binary, f.size).Value = f.data;
-			cmd.ExecuteNonQuery();
+			cmd.CommandText = $"SELECT token FROM User WHERE username='{username}';";
+			string token = cmd.ExecuteScalar().ToString();
 
 			conn.Close();
+
+			return token;
+		}
+
+
+		public int InsertFile(StoredFile f)
+		{
+			conn.Open();
+
+			SQLiteCommand cmd = conn.CreateCommand();
+			cmd.CommandText = $"INSERT INTO StoredFile(username, filename, size, hash, data) VALUES ('{f.username}', '{f.filename}', {f.size}, '{f.hash}', @file);";
+			cmd.Parameters.Add("@file", DbType.Binary, f.size).Value = f.data;
+			int ret = cmd.ExecuteNonQuery();
+
+			conn.Close();
+
+			return ret;
 		}
 
 		public DataTable ListFiles(string username)
 		{
-
 			conn.Open();
 
 			SQLiteCommand cmd = conn.CreateCommand();
-			cmd.CommandText = $"SELECT name, size, hash FROM StoredFile WHERE username='{username}';";
-			DataTable ds = new DataTable();
-			ds.Load(cmd.ExecuteReader());
-
-			conn.Close();
-
-			return ds;
-		}
-
-		public void DeleteFile(string username, string filename)
-		{
-			conn.Open();
-
-			SQLiteCommand cmd = conn.CreateCommand();
-			cmd.CommandText = $"DELETE FROM StoredFiles WHERE username={username} AND filename={filename};";
-			cmd.ExecuteNonQuery();
-
-			conn.Close();
-		}
-
-		public StoredFile GetFile(string username, string filename)
-		{
-			conn.Open();
-
-			SQLiteCommand cmd = conn.CreateCommand();
-			cmd.CommandText = $"SELECT size, hash, data FROM StoredFile WHERE WHERE username={username} AND filename={filename};";
+			cmd.CommandText = $"SELECT filename, size, hash FROM StoredFile WHERE username='{username}';";
 			SQLiteDataReader r = cmd.ExecuteReader();
+			if (r.HasRows)
+			{
+				DataTable dt = new DataTable();
+				dt.Load(r);
 
-			int size = r.GetInt32(0);
-			string hash = r.GetString(1);
-			byte[] data = new byte[size];
-			r.GetBytes(2, 0, data, 0, size);
-
+				conn.Close();
+				r.Close();
+				return dt;
+			}
+			r.Close();
 			conn.Close();
-
-			return new StoredFile(username, filename, size, hash, data);
+			return null;
 		}
 
-		public void InsertUser(User user)
+		public int DeleteFile(string username, string filename)
 		{
 			conn.Open();
 
 			SQLiteCommand cmd = conn.CreateCommand();
-			cmd.CommandText = $"INSERT INTO User(username, passhash) VALUES ({user.username}, {user.passhash});";
-			cmd.ExecuteNonQuery();
+			cmd.CommandText = $"DELETE FROM StoredFile WHERE username='{username}' AND filename='{filename}';";
+			int ret = cmd.ExecuteNonQuery();
 
 			conn.Close();
 
+			return ret;
 		}
 
-		public void DeleteUser(string username)
+		public bool QueryFile(string username, string filename)
 		{
 			conn.Open();
 
 			SQLiteCommand cmd = conn.CreateCommand();
-			cmd.CommandText = $"DELETE FROM User WHERE username={username};";
-			cmd.ExecuteNonQuery();
-
-			conn.Close();
-		}
-
-		public bool QueryUser(string username, string passhash)
-		{
-			conn.Open();
-
-			SQLiteCommand cmd = conn.CreateCommand();
-			cmd.CommandText = $"SELECT username FROM User WHERE username='{username}' AND passhash='{passhash}';";
+			cmd.CommandText = $"SELECT filename FROM StoredFile WHERE username='{username}' AND filename='{filename}';";
 			SQLiteDataReader r = cmd.ExecuteReader();
 			bool hasRows = r.HasRows;
+			r.Close();
 
 			conn.Close();
 
 			return hasRows;
 		}
+
+		public byte[] GetFile(string username, string filename)
+		{
+			conn.Open();
+
+			SQLiteCommand cmd = conn.CreateCommand();
+			cmd.CommandText = $"SELECT size, data FROM StoredFile WHERE username='{username}' AND filename='{filename}';";
+			SQLiteDataReader r = cmd.ExecuteReader();
+
+			r.Read();
+
+			int size = r.GetInt32(0);
+			byte[] data = new byte[size];
+			r.GetBytes(1, 0, data, 0, size);
+
+			r.Close();
+			conn.Close();
+
+			return data;
+		}
+
+		public int InsertUser(string username, string password)
+		{
+			conn.Open();
+
+			SQLiteCommand cmd = conn.CreateCommand();
+			cmd.CommandText = $"INSERT INTO User(username, password, token) VALUES ('{username}', '{password}', NULL);";
+			int ret = cmd.ExecuteNonQuery();
+
+			conn.Close();
+
+			return ret;
+		}
+
+
+		public bool QueryUser(string username)
+		{
+			conn.Open();
+
+			SQLiteCommand cmd = conn.CreateCommand();
+			cmd.CommandText = $"SELECT username FROM User WHERE username='{username}';";
+			SQLiteDataReader r = cmd.ExecuteReader();
+			bool hasRows = r.HasRows;
+			r.Close();
+
+			conn.Close();
+
+			return hasRows;
+		}
+
+		public bool QueryUser(string username, string password)
+		{
+			conn.Open();
+
+			SQLiteCommand cmd = conn.CreateCommand();
+			cmd.CommandText = $"SELECT username FROM User WHERE username='{username}' AND password='{password}';";
+			SQLiteDataReader r = cmd.ExecuteReader();
+			bool hasRows = r.HasRows;
+			r.Close();
+
+			conn.Close();
+
+			return hasRows;
+		}
+
+		public int SetToken(string username, string token)
+		{
+			conn.Open();
+
+			SQLiteCommand cmd = conn.CreateCommand();
+			cmd.CommandText = $"UPDATE User SET token='{token}' WHERE username='{username}';";
+			int ret = cmd.ExecuteNonQuery();
+
+			conn.Close();
+
+			return ret;
+	}
 	}
 }

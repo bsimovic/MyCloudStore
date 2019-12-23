@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.Serialization;
-using System.ServiceModel;
+﻿using System.ServiceModel;
 using System.IO;
-using System.Text;
+using System.Data;
 
 namespace MyCloudStoreSvc
 {
@@ -12,12 +8,21 @@ namespace MyCloudStoreSvc
 	public interface IMCSService
 	{
 		[OperationContract]
-		string List(string name);
+		void Register(string username, string password);
 
 		[OperationContract]
-		int Upload(Stream stream);
+		string LogIn(string username, string password);
 
 		[OperationContract]
-		byte[] Download(Stream stream);
+		DataTable List(string username, string token);
+
+		[OperationContract]
+		void Upload(string username, string filename, string token);
+
+		[OperationContract]
+		byte[] Download(string username, string filename, string token);
+
+		[OperationContract]
+		void Delete(string username, string token, string filename);
 	}
 }

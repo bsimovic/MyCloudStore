@@ -4,7 +4,7 @@ namespace MyCloudStoreSvc
 	class StoredFile
 	{
 		public string username; // username vlasnika fajla, zajedno sa imenom fajla cini primarni kljuc
-		public string filename;		// naziv fajla
+		public string filename;	// naziv fajla
 		public int size;        // velicina u bajtovima
 		public string hash;     // hash vrednost
 		public byte[] data;     // sadrzaj fajla
@@ -17,6 +17,5 @@ namespace MyCloudStoreSvc
 			this.hash = hash;
 			this.data = data;
 		}
-
 	}
 }

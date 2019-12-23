@@ -1,21 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 
 namespace MyCloudStoreSvc
 {
 	interface ISQLiteConn
 	{
-		void InsertFile(StoredFile f);
-		DataTable ListFiles(string username);
-		void DeleteFile(string username, string filename);
-		StoredFile GetFile(string username, string filename);
+		string GetToken(string username);                   // vraca username za dati token, null u suprotnom
 
-		void InsertUser(User user);
-		void DeleteUser(string username);
-		bool QueryUser(string username, string passhash);
+		int InsertFile(StoredFile f);						// unesi fajl u bazu
+		DataTable ListFiles(string username);               // izlistiraj fajlove datog korisnika
+		int DeleteFile(string username, string filename);   // obrisi fajl iz baze
+		byte[] GetFile(string username, string filename);   // uzmi fajl iz baze
+		bool QueryFile(string username, string filename);
+
+		int InsertUser(string username, string password);   // ubaci korisnika u bazu
+		bool QueryUser(string username);                    // proveri da li postoji korisnik sa tim username-om
+		int SetToken(string username, string token);		// generisi novi token za korisniak
 	}
 }
