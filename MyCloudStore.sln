@@ -3,11 +3,14 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCloudStoreLib", "MyCloudStoreLib\MyCloudStoreLib.csproj", "{1F5A3BB2-3EE0-4D70-9A20-A6EDDA8A05AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCloudStoreLib", "MyCloudStoreLib\MyCloudStoreLib.csproj", "{1F5A3BB2-3EE0-4D70-9A20-A6EDDA8A05AC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCloudStoreApp", "MyCloudStoreApp\MyCloudStoreApp.csproj", "{4CDD8662-C76A-4FE4-9D34-B12AEEBC281B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{4BB1C1A8-2794-4F97-A81E-9EB38C11E791} = {4BB1C1A8-2794-4F97-A81E-9EB38C11E791}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCloudStoreApi", "MyCloudStoreApi\MyCloudStoreApi.csproj", "{B87A3995-CE17-40C4-A015-541FE9D459B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCloudStoreSvc", "MyCloudStoreSvc\MyCloudStoreSvc.csproj", "{4BB1C1A8-2794-4F97-A81E-9EB38C11E791}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +26,10 @@ Global
 		{4CDD8662-C76A-4FE4-9D34-B12AEEBC281B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CDD8662-C76A-4FE4-9D34-B12AEEBC281B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CDD8662-C76A-4FE4-9D34-B12AEEBC281B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B87A3995-CE17-40C4-A015-541FE9D459B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B87A3995-CE17-40C4-A015-541FE9D459B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B87A3995-CE17-40C4-A015-541FE9D459B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B87A3995-CE17-40C4-A015-541FE9D459B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BB1C1A8-2794-4F97-A81E-9EB38C11E791}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BB1C1A8-2794-4F97-A81E-9EB38C11E791}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BB1C1A8-2794-4F97-A81E-9EB38C11E791}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BB1C1A8-2794-4F97-A81E-9EB38C11E791}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
