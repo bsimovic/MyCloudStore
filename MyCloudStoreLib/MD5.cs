@@ -1,14 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 
 namespace MyCloudStoreLib
 {
 	public static class MD5
 	{
-		public static string Hash(byte[] input)
+		private static uint LeftRotate(uint x, int c)
 		{
-			// brojevi sifrovanja po rundi
+			return ((x << c) | (x >> (32 - c)));
+		}
+
+		public static byte[] Hash(byte[] input)
+		{
 			int[] s = 
 			{
 				7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
@@ -16,8 +19,8 @@ namespace MyCloudStoreLib
 				4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
 				6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21 ,6, 10, 15, 21
 			};
-
-			// konstante izracunatih sinusa 
+			
+			// izracunati sinusi
 			uint[] K =
 			{
 				0xd76aa478, 0xe8c7b756, 0x242070db, 0xc1bdceee,
@@ -41,7 +44,7 @@ namespace MyCloudStoreLib
 			uint a0 = 0x67452301, b0 = 0xefcdab89, c0 = 0x98badcfe, d0 = 0x10325476;
 
 			// preprocesiranje
-			long size = input.Length;			// duzina ulaza u bajtovima
+			long size = input.LongLength;		// duzina ulaza u bajtovima
 			long msgsize = size + 1;			// duzina poruke, prvi dodatan bajt
 			long zerobytes = msgsize % 64;		// sledi racunica za broj bajtova "0000 0000" koji treba dodati
 			if (zerobytes > 56)
@@ -75,7 +78,7 @@ namespace MyCloudStoreLib
 
 				uint A = a0, B = b0, C = c0, D = d0;
 
-				for (uint i = 0; i < 64; i++)	// hash algoritam
+				for (uint i = 0; i < 64; i++)
 				{
 					uint F, g;
 					if ((0 <= i) && (i <= 15))
@@ -112,35 +115,46 @@ namespace MyCloudStoreLib
 				d0 += D;
 			}
 
-			StringBuilder sb = new StringBuilder();
 			byte[] a0b = BitConverter.GetBytes(a0);
 			byte[] b0b = BitConverter.GetBytes(b0);
 			byte[] c0b = BitConverter.GetBytes(c0);
 			byte[] d0b = BitConverter.GetBytes(d0);
-			sb.Append(String.Format("{0:X} ", a0b[0]));
-			sb.Append(String.Format("{0:X} ", a0b[1]));
-			sb.Append(String.Format("{0:X} ", a0b[2]));
-			sb.Append(String.Format("{0:X} ", a0b[3]));
-			sb.Append(String.Format("{0:X} ", b0b[0]));
-			sb.Append(String.Format("{0:X} ", b0b[1]));
-			sb.Append(String.Format("{0:X} ", b0b[2]));
-			sb.Append(String.Format("{0:X} ", b0b[3]));
-			sb.Append(String.Format("{0:X} ", c0b[0]));
-			sb.Append(String.Format("{0:X} ", c0b[1]));
-			sb.Append(String.Format("{0:X} ", c0b[2]));
-			sb.Append(String.Format("{0:X} ", c0b[3]));
-			sb.Append(String.Format("{0:X} ", d0b[0]));
-			sb.Append(String.Format("{0:X} ", d0b[1]));
-			sb.Append(String.Format("{0:X} ", d0b[2]));
-			sb.Append(String.Format("{0:X}", d0b[3]));
 
-			return sb.ToString();
-			
+			byte[] output = new byte[16];
+			for (int i = 0; i < 16; i++)
+			{
+				int t = i / 4;
+				switch (t)
+				{
+					case 0: output[i] = a0b[i % 4]; break;
+					case 1: output[i] = b0b[i % 4]; break;
+					case 2: output[i] = c0b[i % 4]; break;
+					case 3: output[i] = d0b[i % 4]; break;
+				}
+			}
+
+			return output;
 		}
 
-		private static uint LeftRotate(uint x, int c)
+
+		public static byte[] Hash(string input)
 		{
-			return ((x << c) | (x >> (32 - c)));
-		} 
+			return Hash(Encoding.ASCII.GetBytes(input));
+		}
+
+		public static string HashString(byte[] input)
+		{
+			byte[] hash = Hash(input);
+			StringBuilder sb = new StringBuilder();
+			for (int i = 0; i < 16; i++)
+				sb.Append(String.Format("{0:x2}", hash[i]));
+
+			return sb.ToString();
+		}
+
+		public static string HashString(string input)
+		{
+			return HashString(Encoding.ASCII.GetBytes(input));
+		}
 	}
 }

@@ -11,6 +11,7 @@ namespace MyCloudStoreSvc
 		private static SQLiteConn instance;
 		private static object locker = true;
 
+		// omoguci uzajamno iskljucivanje
 		public static SQLiteConn Instance
 		{
 			get
