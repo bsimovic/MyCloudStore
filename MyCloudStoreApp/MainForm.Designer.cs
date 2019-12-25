@@ -28,112 +28,120 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.uploadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
-			this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.connectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.changeConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.testConnectionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.disconnectToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.menuStrip1.SuspendLayout();
+			this.loginButton = new System.Windows.Forms.Button();
+			this.registerButton = new System.Windows.Forms.Button();
+			this.dataView = new System.Windows.Forms.DataGridView();
+			this.buttonUpload = new System.Windows.Forms.Button();
+			this.buttonDownload = new System.Windows.Forms.Button();
+			this.buttonRefresh = new System.Windows.Forms.Button();
+			this.labelStatus = new System.Windows.Forms.Label();
+			((System.ComponentModel.ISupportInitialize)(this.dataView)).BeginInit();
 			this.SuspendLayout();
 			// 
-			// menuStrip1
+			// loginButton
 			// 
-			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
-            this.connectionToolStripMenuItem});
-			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(601, 24);
-			this.menuStrip1.TabIndex = 0;
-			this.menuStrip1.Text = "menuStrip1";
+			this.loginButton.Location = new System.Drawing.Point(15, 4);
+			this.loginButton.Name = "loginButton";
+			this.loginButton.Size = new System.Drawing.Size(75, 23);
+			this.loginButton.TabIndex = 1;
+			this.loginButton.Text = "Log in";
+			this.loginButton.UseVisualStyleBackColor = true;
+			this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
 			// 
-			// fileToolStripMenuItem
+			// registerButton
 			// 
-			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.uploadToolStripMenuItem,
-            this.toolStripMenuItem1,
-            this.closeToolStripMenuItem});
-			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-			this.fileToolStripMenuItem.Text = "File";
+			this.registerButton.Location = new System.Drawing.Point(96, 4);
+			this.registerButton.Name = "registerButton";
+			this.registerButton.Size = new System.Drawing.Size(75, 23);
+			this.registerButton.TabIndex = 2;
+			this.registerButton.Text = "Register";
+			this.registerButton.UseVisualStyleBackColor = true;
+			this.registerButton.Click += new System.EventHandler(this.registerButton_Click);
 			// 
-			// uploadToolStripMenuItem
+			// dataView
 			// 
-			this.uploadToolStripMenuItem.Name = "uploadToolStripMenuItem";
-			this.uploadToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.uploadToolStripMenuItem.Text = "Upload...";
+			this.dataView.AllowUserToAddRows = false;
+			this.dataView.AllowUserToDeleteRows = false;
+			this.dataView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+			this.dataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+			this.dataView.Enabled = false;
+			this.dataView.Location = new System.Drawing.Point(15, 33);
+			this.dataView.Name = "dataView";
+			this.dataView.ReadOnly = true;
+			this.dataView.Size = new System.Drawing.Size(509, 212);
+			this.dataView.TabIndex = 3;
 			// 
-			// toolStripMenuItem1
+			// buttonUpload
 			// 
-			this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-			this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+			this.buttonUpload.Enabled = false;
+			this.buttonUpload.Location = new System.Drawing.Point(368, 254);
+			this.buttonUpload.Name = "buttonUpload";
+			this.buttonUpload.Size = new System.Drawing.Size(75, 23);
+			this.buttonUpload.TabIndex = 8;
+			this.buttonUpload.Text = "Upload";
+			this.buttonUpload.UseVisualStyleBackColor = true;
 			// 
-			// closeToolStripMenuItem
+			// buttonDownload
 			// 
-			this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
-			this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.closeToolStripMenuItem.Text = "Close";
+			this.buttonDownload.Enabled = false;
+			this.buttonDownload.Location = new System.Drawing.Point(449, 254);
+			this.buttonDownload.Name = "buttonDownload";
+			this.buttonDownload.Size = new System.Drawing.Size(75, 23);
+			this.buttonDownload.TabIndex = 9;
+			this.buttonDownload.Text = "Download";
+			this.buttonDownload.UseVisualStyleBackColor = true;
 			// 
-			// connectionToolStripMenuItem
+			// buttonRefresh
 			// 
-			this.connectionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.changeConnectionToolStripMenuItem,
-            this.disconnectToolStripMenuItem,
-            this.testConnectionToolStripMenuItem});
-			this.connectionToolStripMenuItem.Name = "connectionToolStripMenuItem";
-			this.connectionToolStripMenuItem.Size = new System.Drawing.Size(81, 20);
-			this.connectionToolStripMenuItem.Text = "Connection";
+			this.buttonRefresh.Enabled = false;
+			this.buttonRefresh.Location = new System.Drawing.Point(449, 4);
+			this.buttonRefresh.Name = "buttonRefresh";
+			this.buttonRefresh.Size = new System.Drawing.Size(75, 23);
+			this.buttonRefresh.TabIndex = 11;
+			this.buttonRefresh.Text = "Refresh";
+			this.buttonRefresh.UseVisualStyleBackColor = true;
+			this.buttonRefresh.Click += new System.EventHandler(this.buttonRefresh_Click);
 			// 
-			// changeConnectionToolStripMenuItem
+			// labelStatus
 			// 
-			this.changeConnectionToolStripMenuItem.Name = "changeConnectionToolStripMenuItem";
-			this.changeConnectionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.changeConnectionToolStripMenuItem.Text = "Connect...";
-			// 
-			// testConnectionToolStripMenuItem
-			// 
-			this.testConnectionToolStripMenuItem.Name = "testConnectionToolStripMenuItem";
-			this.testConnectionToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
-			this.testConnectionToolStripMenuItem.Text = "Test connection";
-			// 
-			// disconnectToolStripMenuItem
-			// 
-			this.disconnectToolStripMenuItem.Name = "disconnectToolStripMenuItem";
-			this.disconnectToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.disconnectToolStripMenuItem.Text = "Disconnect";
+			this.labelStatus.AutoSize = true;
+			this.labelStatus.Location = new System.Drawing.Point(12, 259);
+			this.labelStatus.Name = "labelStatus";
+			this.labelStatus.Size = new System.Drawing.Size(111, 13);
+			this.labelStatus.TabIndex = 12;
+			this.labelStatus.Text = "You are not logged in.";
 			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(601, 431);
-			this.Controls.Add(this.menuStrip1);
+			this.ClientSize = new System.Drawing.Size(539, 290);
+			this.Controls.Add(this.labelStatus);
+			this.Controls.Add(this.buttonRefresh);
+			this.Controls.Add(this.buttonDownload);
+			this.Controls.Add(this.buttonUpload);
+			this.Controls.Add(this.dataView);
+			this.Controls.Add(this.registerButton);
+			this.Controls.Add(this.loginButton);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-			this.MainMenuStrip = this.menuStrip1;
+			this.MaximizeBox = false;
+			this.MinimizeBox = false;
 			this.Name = "MainForm";
 			this.Text = "MyCloudStore";
-			this.menuStrip1.ResumeLayout(false);
-			this.menuStrip1.PerformLayout();
+			((System.ComponentModel.ISupportInitialize)(this.dataView)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
 		}
 
 		#endregion
-
-		private System.Windows.Forms.MenuStrip menuStrip1;
-		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem uploadToolStripMenuItem;
-		private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
-		private System.Windows.Forms.ToolStripMenuItem closeToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem connectionToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem changeConnectionToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem testConnectionToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem disconnectToolStripMenuItem;
+		private System.Windows.Forms.Button loginButton;
+		private System.Windows.Forms.Button registerButton;
+		private System.Windows.Forms.DataGridView dataView;
+		private System.Windows.Forms.Button buttonUpload;
+		private System.Windows.Forms.Button buttonDownload;
+		private System.Windows.Forms.Button buttonRefresh;
+		private System.Windows.Forms.Label labelStatus;
 	}
 }
 

@@ -11,9 +11,10 @@ namespace MyCloudStoreApp
 		[STAThread]
 		static void Main()
 		{
+			ClientController ctrl = new ClientController();
 			Application.EnableVisualStyles();
 			Application.SetCompatibleTextRenderingDefault(false);
-			Application.Run(new MainForm());
+			Application.Run(new MainForm(ctrl));
 		}
 	}
 }

@@ -1,6 +1,6 @@
 ﻿using System.ServiceModel;
-using System.IO;
 using System.Data;
+using System.Runtime.Serialization;
 
 namespace MyCloudStoreSvc
 {
@@ -17,12 +17,31 @@ namespace MyCloudStoreSvc
 		DataTable List(string username, string token);
 
 		[OperationContract]
-		void Upload(string username, string filename, string token);
+		void Upload(string username, StoredFile f, string token);
 
 		[OperationContract]
-		byte[] Download(string username, string filename, string token);
+		StoredFile Download(string username, string filename, string token);
 
 		[OperationContract]
 		void Delete(string username, string token, string filename);
+	}
+
+	[DataContract]
+	public class StoredFile
+	{ 
+		[DataMember]
+		public string username; // username vlasnika fajla, zajedno sa imenom fajla cini primarni 
+
+		[DataMember]
+		public string filename; // naziv fajla
+
+		[DataMember]
+		public int size; // velicina u bajtovima
+
+		[DataMember]
+		public string hash; // hash vrednost
+
+		[DataMember]
+		public byte[] data; // sadrzaj fajla
 	}
 }

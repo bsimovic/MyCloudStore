@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.IO;
 using System.ServiceModel;
 
 namespace MyCloudStoreSvc
@@ -50,36 +49,26 @@ namespace MyCloudStoreSvc
 			return dt;
 		}
 
-		public void Upload(string username, string filename, string token)
+		public void Upload(string username, StoredFile f, string token)
 		{
 			SQLiteConn conn = SQLiteConn.Instance;
 			CheckToken(username, token);
-			if (conn.QueryFile(username, filename))
+			if (conn.QueryFile(username, f.filename))
 				throw new FaultException("File with that name already exsits.");
 
-
-			// PRIVREMENO
-			byte[] data = new byte[3];
-			data[0] = 0;
-			data[1] = 1;
-			data[2] = 2;
-			StoredFile f = new StoredFile(username, filename, 23, "asdfgqwer", data);
-
 			conn.InsertFile(f);
-			//---
 		}
 
-		public byte[] Download(string username, string filename, string token)
+		public StoredFile Download(string username, string filename, string token)
 		{
 			SQLiteConn conn = SQLiteConn.Instance;
 			CheckToken(username, token);
 			if (!conn.QueryFile(username, filename))
 				throw new FaultException("File does not exist.");
 
-			byte[] data = conn.GetFile(username, filename);
-			// PRIVEREMENO
+			StoredFile sf = conn.GetFile(username, filename);
 
-			return data;
+			return sf;
 			//--
 		}
 

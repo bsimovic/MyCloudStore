@@ -1,5 +1,4 @@
-﻿using System;
-using System.Data.SQLite;
+﻿using System.Data.SQLite;
 using System.Data;
 
 namespace MyCloudStoreSvc
@@ -107,24 +106,28 @@ namespace MyCloudStoreSvc
 			return hasRows;
 		}
 
-		public byte[] GetFile(string username, string filename)
+		public StoredFile GetFile(string username, string filename)
 		{
 			conn.Open();
 
 			SQLiteCommand cmd = conn.CreateCommand();
-			cmd.CommandText = $"SELECT size, data FROM StoredFile WHERE username='{username}' AND filename='{filename}';";
+			cmd.CommandText = $"SELECT * FROM StoredFile WHERE username='{username}' AND filename='{filename}';";
 			SQLiteDataReader r = cmd.ExecuteReader();
 
 			r.Read();
+			StoredFile sf = new StoredFile();
+			sf.username = r.GetString(0);
+			sf.filename = r.GetString(1);
+			sf.size = r.GetInt32(2);
+			sf.hash = r.GetString(3);
 
-			int size = r.GetInt32(0);
-			byte[] data = new byte[size];
-			r.GetBytes(1, 0, data, 0, size);
+			byte[] data = new byte[sf.size];
+			r.GetBytes(4, 0, data, 0, sf.size);
 
 			r.Close();
 			conn.Close();
 
-			return data;
+			return sf;
 		}
 
 		public int InsertUser(string username, string password)
