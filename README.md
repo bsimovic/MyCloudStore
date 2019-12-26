@@ -18,3 +18,8 @@ Pre kriptovanja, ulazni fajl se proširuje nulama da bi bio deljiv brojem bajta 
 Za oba algoritma, nakon kriptovanja fajl se proširuje sa još 8 bajta koji sadrže dužinu originalnog fajla, da bi se mogao vratiti. (ideja iz MD5 algoritma)  
 Za XTEA, ključ se hashira i taj hash se koristi za enkripciju bloka. (taman 128 bita)  
 Za DT uzmaju se prvih 4 i drugih 4 bajta iz hasha ključa kao ključ kolona i ključ vrsta (budući da je blok 16 bajta).  
+
+### Pojašnjenje autentikacije
+Da bi bilo ko mogao da izvršni neku od operacija servisa (sem register i login) potrebno je da prosledi svoj username i validan token.  
+Novi token se generiše prilikom svakog logovanja korisnika (koristi se UUID) i smešta se u bazu u vrsti tog korisnika a kopija se prosleđuje klijentu.  
+Klijent čuva token dok je aplikacija pokrenuta, prilikom izlaska iz aplikacije potrebno je ulogovati se opet i dobiti novi token.
