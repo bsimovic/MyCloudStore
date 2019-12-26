@@ -3,7 +3,7 @@
 
 ### Raspored
 MyCloudStoreApp - Klijentska aplikacija  
-MyCloudStoreLib - Crypto biblioteka
+MyCloudStoreLib - Crypto biblioteka  
 MyCloudStoreSvc - WCF servis  
 db-init.sql - SQL komande za inicijalizaciju SQLite baze 
 Baza mora biti na putanji: C:\mcsdb\mcdsb.db  
