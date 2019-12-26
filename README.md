@@ -1,6 +1,5 @@
 # MyCloudStore
-## Projekat iz zaštite informacija 2019
-## Branko Simović 16326
+## Projekat iz zaštite informacija 2019 - Branko Simović 16326
 
 ### Raspored
 MyCloudStoreApp - Klijentska aplikacija  
