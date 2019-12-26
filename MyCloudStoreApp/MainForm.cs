@@ -55,5 +55,41 @@ namespace MyCloudStoreApp
 		{
 			ctrl.Refresh();
 		}
+
+		private void buttonUpload_Click(object sender, EventArgs e)
+		{
+			Upload f = new Upload(ctrl);
+			f.ShowDialog();
+		}
+
+		private void buttonDownload_Click(object sender, EventArgs e)
+		{
+			string filename;
+			if (dataView.CurrentRow != null)
+			{
+				
+				filename = dataView.CurrentRow.Cells[0].Value.ToString();
+				Download f = new Download(ctrl, filename);
+				f.ShowDialog();
+			}
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			string filename;
+			if (dataView.CurrentRow != null)
+			{
+				filename = dataView.CurrentRow.Cells[0].Value.ToString();
+				DialogResult r = MessageBox.Show("Are you sure you want to delete the selected file?", "Confirm", MessageBoxButtons.YesNo);
+				if (r == DialogResult.Yes)
+					ctrl.Delete(filename);
+			}
+		}
+
+		public void ResetView(DataTable data)
+		{
+			this.dataView.DataSource = data;
+			dataView.Refresh();
+		}
 	}
 }

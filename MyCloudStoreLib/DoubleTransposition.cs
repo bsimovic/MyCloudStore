@@ -84,9 +84,10 @@ namespace MyCloudStoreLib
             byte[] origSizeB = new byte[8];
             for (int i = 0; i < 8; i++)
                 origSizeB[i] = input[size + i];
-            long origSize = BitConverter.ToInt64(origSizeB, 0);
+            ulong origSize = BitConverter.ToUInt64(origSizeB, 0);
             byte[] outputOrigSize = new byte[origSize];
-            Array.Copy(output, outputOrigSize, origSize);
+            for (ulong i = 0; i < origSize; i++)
+                outputOrigSize[i] = output[i];
 
             return outputOrigSize;
         }

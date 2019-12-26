@@ -123,6 +123,7 @@ namespace MyCloudStoreSvc
 
 			byte[] data = new byte[sf.size];
 			r.GetBytes(4, 0, data, 0, sf.size);
+			sf.data = data;
 
 			r.Close();
 			conn.Close();

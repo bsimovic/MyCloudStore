@@ -35,6 +35,7 @@
 			this.buttonDownload = new System.Windows.Forms.Button();
 			this.buttonRefresh = new System.Windows.Forms.Button();
 			this.labelStatus = new System.Windows.Forms.Label();
+			this.button1 = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.dataView)).BeginInit();
 			this.SuspendLayout();
 			// 
@@ -66,30 +67,34 @@
 			this.dataView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 			this.dataView.Enabled = false;
 			this.dataView.Location = new System.Drawing.Point(15, 33);
+			this.dataView.MultiSelect = false;
 			this.dataView.Name = "dataView";
 			this.dataView.ReadOnly = true;
+			this.dataView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
 			this.dataView.Size = new System.Drawing.Size(509, 212);
 			this.dataView.TabIndex = 3;
 			// 
 			// buttonUpload
 			// 
 			this.buttonUpload.Enabled = false;
-			this.buttonUpload.Location = new System.Drawing.Point(368, 254);
+			this.buttonUpload.Location = new System.Drawing.Point(287, 254);
 			this.buttonUpload.Name = "buttonUpload";
 			this.buttonUpload.Size = new System.Drawing.Size(75, 23);
 			this.buttonUpload.TabIndex = 8;
 			this.buttonUpload.Text = "Upload";
 			this.buttonUpload.UseVisualStyleBackColor = true;
+			this.buttonUpload.Click += new System.EventHandler(this.buttonUpload_Click);
 			// 
 			// buttonDownload
 			// 
 			this.buttonDownload.Enabled = false;
-			this.buttonDownload.Location = new System.Drawing.Point(449, 254);
+			this.buttonDownload.Location = new System.Drawing.Point(368, 254);
 			this.buttonDownload.Name = "buttonDownload";
 			this.buttonDownload.Size = new System.Drawing.Size(75, 23);
 			this.buttonDownload.TabIndex = 9;
 			this.buttonDownload.Text = "Download";
 			this.buttonDownload.UseVisualStyleBackColor = true;
+			this.buttonDownload.Click += new System.EventHandler(this.buttonDownload_Click);
 			// 
 			// buttonRefresh
 			// 
@@ -111,11 +116,22 @@
 			this.labelStatus.TabIndex = 12;
 			this.labelStatus.Text = "You are not logged in.";
 			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(449, 254);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(75, 23);
+			this.button1.TabIndex = 13;
+			this.button1.Text = "Delete";
+			this.button1.UseVisualStyleBackColor = true;
+			this.button1.Click += new System.EventHandler(this.button1_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(539, 290);
+			this.Controls.Add(this.button1);
 			this.Controls.Add(this.labelStatus);
 			this.Controls.Add(this.buttonRefresh);
 			this.Controls.Add(this.buttonDownload);
@@ -142,6 +158,7 @@
 		private System.Windows.Forms.Button buttonDownload;
 		private System.Windows.Forms.Button buttonRefresh;
 		private System.Windows.Forms.Label labelStatus;
+		private System.Windows.Forms.Button button1;
 	}
 }
 
