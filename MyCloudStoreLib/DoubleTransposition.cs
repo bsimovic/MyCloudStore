@@ -8,7 +8,7 @@ namespace MyCloudStoreLib
     public static class DoubleTransposition
     {
         // uzmi prva 4 bajta iz hash-a za prvi kljuc i druga 4 za drugi
-        // dva niza brojeva 0-7 bazirano na hash-u
+        // dva niza brojeva 0-3 bazirano na hash-u
         private static byte[][] GetKeysFromHash(byte[] hash)
         {
             byte[][] keys = new byte[2][];

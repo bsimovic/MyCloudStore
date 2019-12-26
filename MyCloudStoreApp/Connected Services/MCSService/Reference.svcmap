@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="cbff4650-fd63-4e80-9d37-1f56f132cf12" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="b28a85d5-52fd-4a55-976b-2215602ed181" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,11 +22,11 @@
     <MetadataSource Address="http://localhost:8733/Design_Time_Addresses/MyCloudStoreSvc/Service1/mex" Protocol="mex" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="68ea829e-c7d5-48c2-9d3f-e2378e4f61ea" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/MyCloudStoreSvc/Service1/mex" />
-    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="c53d232d-7660-4317-923e-fe861f3da0d3" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/MyCloudStoreSvc/Service1/mex" />
-    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="a2f00685-9446-42f3-a7f1-43990fee5011" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/MyCloudStoreSvc/Service1/mex" />
-    <MetadataFile FileName="System.Data.xsd" MetadataType="Schema" ID="e5d6d169-3c8e-49ae-aded-d04e55ac2858" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/MyCloudStoreSvc/Service1/mex" />
-    <MetadataFile FileName="MyCloudStoreSvc.xsd" MetadataType="Schema" ID="6e19536d-0fdd-49bb-a43c-c1c88370e985" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/MyCloudStoreSvc/Service1/mex" />
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="784d8809-bada-4591-932d-f4b28864329b" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/MyCloudStoreSvc/Service1/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="5a5211a7-2258-4408-82f0-8c3de6449bff" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/MyCloudStoreSvc/Service1/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="ff84214a-5dc0-43db-aaaf-d0077058c3da" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/MyCloudStoreSvc/Service1/mex" />
+    <MetadataFile FileName="System.Data.xsd" MetadataType="Schema" ID="c107593b-3cc9-46d7-9816-5c3673e0a811" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/MyCloudStoreSvc/Service1/mex" />
+    <MetadataFile FileName="MyCloudStoreSvc.xsd" MetadataType="Schema" ID="1fa2a0a1-09f6-4afb-8a9c-cecc76f9634a" SourceId="1" SourceUrl="http://localhost:8733/Design_Time_Addresses/MyCloudStoreSvc/Service1/mex" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
